@@ -7,6 +7,6 @@ server {
     charset utf-8;
     location / {
         limit_req zone=one burst=5;
-        proxy_pass http://<%= ENV["API_V1_BACKEND"] %>;
+        proxy_pass http://<%= ENV["API_BACKEND"] %>;
     }
 }
