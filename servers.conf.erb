@@ -5,8 +5,13 @@ server {
     server_name localhost;
     listen <%= ENV['PORT'] %>;
     charset utf-8;
+
     location / {
-        limit_req zone=slow_trafic;
         proxy_pass http://<%= ENV["API_BACKEND"] %>;
+    }
+
+    location /health {
+        proxy_pass http://<%= ENV["API_BACKEND"] %>;
+        limit_req zone=slow_trafic;
     }
 }
