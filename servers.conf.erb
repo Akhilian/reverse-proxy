@@ -2,7 +2,7 @@
 limit_req_zone $uri zone=slow_trafic:10m rate=4r/s;
 
 # instruction for the caching system
-proxy_cache_path /tmp/cache levels=1:2 keys_zone=health_cache:10m max_size=10g inactive=60m use_temp_path=off;
+proxy_cache_path ./cache levels=1:2 keys_zone=health_cache:10m max_size=10g inactive=60m use_temp_path=off;
 
 
 server {
@@ -17,7 +17,7 @@ server {
     location /health/api {
         proxy_cache health_cache;
         proxy_cache_valid 200 302 10m;
-        
+
         limit_req zone=slow_trafic;
 
         proxy_pass http://<%= ENV["API_BACKEND"] %>;
