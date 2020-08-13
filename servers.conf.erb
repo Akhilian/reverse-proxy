@@ -16,6 +16,8 @@ server {
 
     location /health/api {
         proxy_cache health_cache;
+        proxy_cache_valid 200 302 10m;
+        
         limit_req zone=slow_trafic;
 
         proxy_pass http://<%= ENV["API_BACKEND"] %>;
