@@ -14,7 +14,7 @@ server {
         proxy_pass http://<%= ENV["API_BACKEND"] %>;
     }
 
-    location /health/api {
+    location /recommendations {
         #proxy_cache health_cache;
         #proxy_cache_valid 200 302 10m;
 
