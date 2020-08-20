@@ -19,6 +19,7 @@ server {
         #proxy_cache_valid 200 302 10m;
 
         limit_req zone=slow_trafic;
+        limit_req_dry_run <%= ENV["LIMITATION_DRY_RUN"] %>;
 
         proxy_pass http://<%= ENV["API_BACKEND"] %>;
     }
